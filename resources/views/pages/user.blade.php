@@ -3,7 +3,7 @@
 <div class="row page-titles">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Data Table User</a></li>
     </ol>
 </div>
 <!-- row -->
@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Data Pengguna</h4>
+                <h4 class="card-title" class="breadcrumb-item">Data Pengguna</h4>
                 <a href="" data-bs-toggle="modal" data-bs-target="#basicModal" class="btn btn-primary d-sm-inline-block d-none">Tambah data<i class="fa-solid fa-plus ms-3 scale5"></i></a>
             </div>
             <div class="card-body">
@@ -34,7 +34,7 @@
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ date('D-F-Y', strtotime($user->reated_at)) }}</td>
+                                <td>{{ date('d-F-Y', strtotime($user->reated_at)) }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-warning light sharp" data-bs-toggle="dropdown">

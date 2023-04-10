@@ -16,10 +16,10 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Dompet : Payment Admin Template</title>
+    <title>MyDoctor:App Konsultasi Dokter Online</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/Logo1.png">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -48,7 +48,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
-                                        <a href="index.html"><img src="images/logo-full.png" alt=""></a>
+                                        <a href="{{ url('/') }}"><img src="images/Logo1.png" alt=""></a>
                                     </div>
                                     <h4 class="text-center mb-4">Sign in your account</h4>
                                     <form method="post" action="{{ url ('/') }}">

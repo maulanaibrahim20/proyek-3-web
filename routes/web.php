@@ -24,3 +24,5 @@ Route::post('/', [LoginController::class,'login']);
 Route::resource('/index/table/user', UserController::class, [
     'as' => 'web'
 ])->middleware('auth');
+
+Route::get("/logout", [LoginController::class, "logout"]);
