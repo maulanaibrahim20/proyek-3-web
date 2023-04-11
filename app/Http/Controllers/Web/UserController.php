@@ -13,8 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = ['users'=> User::all()];
-        return view ('pages.user',$data);
+        $data = ['users' => User::all()];
+        return view('pages.user', $data);
     }
 
     /**
@@ -30,7 +30,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->profession = $request->profession;
+        $user->password = bcrypt("password123");
+
+        $user->save();
+
+        return back();
     }
 
     /**
@@ -54,7 +63,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        User::where("id", $id)->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "profession" => $request->profession,
+        ]);
+        return back();
     }
 
     /**
@@ -62,6 +76,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::where("id", $id)->first();
+
+        $user->delete();
+
+        return back();
     }
 }
