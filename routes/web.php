@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Web\DoctorController;
+use App\Http\Controllers\Web\HospitalController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/index', function () {
     return view('index');
 })->name('login')->middleware('auth');
-Route::get(
-    '/',
-    [LoginController::class, 'index']
-)->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/', [LoginController::class, 'login']);
-Route::resource('/index/table/user', UserController::class, [
-    'as' => 'web'
-])->middleware('auth');
+Route::resource('/index/table/user', UserController::class, ['as' => 'web'])->middleware('auth');
 Route::get("/logout", [LoginController::class, "logout"]);
+Route::resource('/index/table/doctor', DoctorController::class);
+Route::resource('/index/table/hospital', HospitalController::class);

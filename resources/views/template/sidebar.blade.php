@@ -161,10 +161,16 @@
                     </li> --}}
             <li><a class="has-arrow ai-icon" href="/javascript:void()" aria-expanded="false">
                     <i class="flaticon-043-menu"></i>
-                    <span class="nav-text">Table</span>
+                    <span class="nav-text" aria-expanded="true">Table</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ url('index/table/user') }}">User Table</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('index/table/doctor') }}">Doctor Table</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('index/table/hospital') }}">Hospital Table</a></li>
                 </ul>
             </li>
             {{-- //pages --}}
