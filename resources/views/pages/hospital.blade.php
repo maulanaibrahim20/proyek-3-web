@@ -3,7 +3,7 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Data Table User</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('index/table/hospital') }}">Data Table Hospital</a></li>
         </ol>
     </div>
     <!-- row -->
@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:80px;"><strong>No.</strong></th>
-                                    <th><strong>Name</strong></th>
+                                    <th3><strong>Name</strong></th3>
                                     <th><strong>Alamat</strong></th>
                                     <th><strong>Gambar</strong></th>
                                     <th><strong>Aksi</strong></th>
@@ -64,14 +64,13 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#EditModal{{ $data->id }}">Edit</a>
-                                                    <form action="{{ url('index/table/doctor/' . $data->id) }}"
+                                                    <form action="{{ url('index/table/hospital/' . $data->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('apakah anda Ingin Menghapus Data ini?')">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button class="dropdown-item">Delete</button>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </td>
@@ -108,7 +107,7 @@
                                     placeholder="Masukkan Alamat">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="address"> Gambar </label>
+                                <label for="image"> Gambar </label>
                                 <input type="file" class="form-control" name="image" id="image">
                             </div>
                         </div>
@@ -123,16 +122,16 @@
         {{-- End Modal Tambah Data --}}
 
         {{-- Start Modal Edit Data --}}
-        {{-- @foreach ($doctor as $doctor)
+        @foreach ($hospital as $doctor)
             <div class="modal fade" id="EditModal{{ $doctor->id }}">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
+                            <h5 class="modal-title">Update Data</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
-                        <form action="{{ url('index/table/doctor/' . $doctor->id) }}" method="post">
+                        <form action="{{ url('index/table/hospital/' . $doctor->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="modal-body">
@@ -142,28 +141,14 @@
                                         placeholder="Masukkan Name" value="{{ $doctor->name }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="jk"> Jenis Kelamin </label>
-                                    <select class="form-control" name="jk" id="jk"
-                                        value="{{ $doctor->jk }}">
-                                        <option disabled>Pilih</option>
-                                        <option value="Laki-Laki">Laki-Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
+                                    <label for="address"> Alamat </label>
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        value="{{ $doctor->address }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="poli"> Poli/Spesialis </label>
-                                    <input type="poli" class="form-control" name="poli" id="poli"
-                                        placeholder="Masukkan Poli/Spesialis Anda?" value="{{ $doctor->poli }}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="lulusan"> Lulusan </label>
-                                    <input type="text" class="form-control" name="lulusan" id="lulusan"
-                                        placeholder="Masukan Perguruan Tinggi Terkait" value="{{ $doctor->lulusan }}">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="nostr"> No.STR </label>
-                                    <input type="number" class="form-control" name="nostr" id="nostr"
-                                        placeholder="Masukkan Nomer.STR Anda Anda" value="{{ $doctor->no_str }}">
+                                    <label for="image"> Gambar </label>
+                                    <input type="file" class="form-control" name="image" id="image"
+                                        value="{{ $doctor->image }}">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -175,6 +160,6 @@
                     </div>
                 </div>
             </div>
-        @endforeach --}}
+        @endforeach
         {{-- End Modal Edit Data --}}
     @endsection

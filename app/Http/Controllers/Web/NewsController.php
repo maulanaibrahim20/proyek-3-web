@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Web\Doctor;
-use App\Models\Web\Hospital;
+use App\Models\Web\News;
 use Illuminate\Http\Request;
 
-class DoctorController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = ['doctor' => Doctor::all(), 'hospital' => Hospital::all()];
-        return view('pages.doctor', $data);
+        $data = ['news' => News::all()];
+        return view('pages.news', $data);
     }
 
     /**
@@ -23,6 +22,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -30,16 +30,22 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $doctor = new Doctor();
+        $news = new News();
 
-        $doctor->name = $request->name;
-        $doctor->poli = $request->poli;
-        $doctor->lulusan = $request->lulusan;
-        $doctor->jenis_kelamin = $request->jk;
-        $doctor->no_str = $request->nostr;
-        $doctor->id_hospital = $request->hospital;
-        $doctor->save();
+        $news->title = $request->title;
+        $news->description = $request->description;
 
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images_news'), $imageName);
+        $news->image = $imageName;
+
+
+        $news->save();
         return back();
     }
 
@@ -64,14 +70,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Doctor::where("id", $id)->update([
-            "name" => $request->name,
-            "poli" => $request->poli,
-            "lulusan" => $request->lulusan,
-            "no_str" => $request->nostr,
-            "jenis_kelamin" => $request->jk,
-        ]);
-        return back();
+        //
     }
 
     /**
@@ -79,10 +78,6 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        $doctor = Doctor::where("id", $id)->first();
-
-        $doctor->delete();
-
-        return back();
+        //
     }
 }

@@ -70,7 +70,12 @@ class HospitalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Hospital::where("id", $id)->update([
+            "name" => $request->name,
+            "address" => $request->address,
+            "image" => $request->image,
+        ]);
+        return back();
     }
 
     /**
@@ -78,6 +83,10 @@ class HospitalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hospital = Hospital::where("id", $id)->first();
+
+        $hospital->delete();
+
+        return back();
     }
 }

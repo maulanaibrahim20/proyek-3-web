@@ -31,17 +31,17 @@
     ********************-->
     {{-- <div id="preloader">
         <div class="waviy">
-		   <span style="--i:1">L</span>
-		   <span style="--i:2">o</span>
-		   <span style="--i:3">a</span>
-		   <span style="--i:4">d</span>
-		   <span style="--i:5">i</span>
-		   <span style="--i:6">n</span>
-		   <span style="--i:7">g</span>
-		   <span style="--i:8">.</span>
-		   <span style="--i:9">.</span>
-		   <span style="--i:10">.</span>
-		</div>
+            <span style="--i:1">K</span>
+            <span style="--i:2">E</span>
+            <span style="--i:3">L</span>
+            <span style="--i:4">O</span>
+            <span style="--i:5">M</span>
+            <span style="--i:6">P</span>
+            <span style="--i:7">O</span>
+            <span style="--i:8">K</span>
+            <span style="--i:9">.</span>
+            <span style="--i:10">6</span>
+        </div>
     </div> --}}
     <!--*******************
         Preloader end
@@ -104,7 +104,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>RPL3 &amp; Developed by <a href="/https://dexignlab.com/" target="_blank">Kelompok 6</a> Since 2023
+                <p>RPL3 &amp; Developed by <a href="" target="_blank">Kelompok 6</a> Since 2023
                 </p>
             </div>
         </div>

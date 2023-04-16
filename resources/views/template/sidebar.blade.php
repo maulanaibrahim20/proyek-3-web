@@ -172,6 +172,9 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ url('index/table/hospital') }}">Hospital Table</a></li>
                 </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('index/table/news') }}">News Table</a></li>
+                </ul>
             </li>
             {{-- //pages --}}
             {{-- <li><a class="has-arrow ai-icon" href="/javascript:void()" aria-expanded="false">
