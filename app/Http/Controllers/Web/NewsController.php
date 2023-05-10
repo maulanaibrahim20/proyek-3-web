@@ -70,7 +70,12 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        News::where("id", $id)->update([
+            "title" => $request->title,
+            "description" => $request->description,
+            "image" => $request->image,
+        ]);
+        return back();
     }
 
     /**
@@ -78,6 +83,10 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $news = News::where("id", $id)->first();
+
+        $news->delete();
+
+        return back();
     }
 }

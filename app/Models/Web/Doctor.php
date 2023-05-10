@@ -17,6 +17,6 @@ class Doctor extends Model
 
     public function getHospital()
     {
-        return $this->belongsTo(Hospital::class, "id");
+        return $this->belongsTo("App\Models\Web\Hospital", "id_hospital", "id");
     }
 }

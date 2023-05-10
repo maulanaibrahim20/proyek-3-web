@@ -15,7 +15,7 @@
                     <h4 class="card-title" class="breadcrumb-item">Data Pengguna</h4>
                     <a href="" data-bs-toggle="modal" data-bs-target="#basicModal"
                         class="btn btn-primary d-sm-inline-block d-none">Tambah data<i
-                            class="fa-solid fa-plus ms-3 scale5"></i></a>
+                            class="fas fa-solid fa-plus ms-3 scale5"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

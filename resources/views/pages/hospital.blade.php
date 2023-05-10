@@ -12,10 +12,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title" class="breadcrumb-item">Data Pengguna</h4>
+                    <h4 class="card-title" class="breadcrumb-item">Data Rumah Sakit</h4>
                     <a href="" data-bs-toggle="modal" data-bs-target="#basicModal"
                         class="btn btn-primary d-sm-inline-block d-none">Tambah data<i
-                            class="fa-solid fa-plus ms-3 scale5"></i></a>
+                            class="fas fa-solid fa-plus ms-3 scale5"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:80px;"><strong>No.</strong></th>
-                                    <th3><strong>Name</strong></th3>
+                                    <th><strong>Name</strong></th>
                                     <th><strong>Alamat</strong></th>
                                     <th><strong>Gambar</strong></th>
                                     <th><strong>Aksi</strong></th>

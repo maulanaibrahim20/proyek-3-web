@@ -3,7 +3,7 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Data Table User</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Data Table Dokter</a></li>
         </ol>
     </div>
     <!-- row -->
@@ -12,10 +12,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title" class="breadcrumb-item">Data Pengguna</h4>
+                    <h4 class="card-title" class="breadcrumb-item">Data Dokter</h4>
                     <a href="" data-bs-toggle="modal" data-bs-target="#basicModal"
                         class="btn btn-primary d-sm-inline-block d-none">Tambah data<i
-                            class="fa-solid fa-plus ms-3 scale5"></i></a>
+                            class="las la-plus ms-3 scale5"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,6 +23,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:80px;"><strong>No.</strong></th>
+                                    <th><strong>Foto</strong></th>
                                     <th><strong>name</strong></th>
                                     <th><strong>Poli</strong></th>
                                     <th><strong>lulusan</strong></th>
@@ -36,6 +37,9 @@
                                 @foreach ($doctor as $data)
                                     <tr>
                                         <td><strong>{{ $loop->iteration }}</strong></td>
+                                        <td><img src="{{ asset('/images_doctor/' . $data->image) }}"
+                                                style="width:60px;height:30">
+                                        </td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->poli }}</td>
                                         <td>{{ $data->lulusan }}</td>
@@ -69,7 +73,6 @@
                                                         @csrf
                                                         <button class="dropdown-item">Delete</button>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </td>
@@ -131,12 +134,10 @@
                                 <input type="number" class="form-control" name="nostr" id="nostr"
                                     placeholder="Masukkan Nomer.STR Anda Anda">
                             </div>
-                            {{-- <div class="form-group mb-3">
-                                <label for="profession"> No.STR </label>
-                                <select class="form-control" name="profession" id="profession">
-                                    <option></option>
-                                </select>
-                            </div> --}}
+                            <div class="form-group mb-3">
+                                <label for="image"> Gambar </label>
+                                <input type="file" class="form-control" name="image" id="image">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>

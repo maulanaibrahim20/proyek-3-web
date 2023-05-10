@@ -38,6 +38,14 @@ class DoctorController extends Controller
         $doctor->jenis_kelamin = $request->jk;
         $doctor->no_str = $request->nostr;
         $doctor->id_hospital = $request->hospital;
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images_doctor'), $imageName);
+        $doctor->image = $imageName;
         $doctor->save();
 
         return back();

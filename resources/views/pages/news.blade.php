@@ -120,8 +120,8 @@
         {{-- End Modal Tambah Data --}}
 
         {{-- Start Modal Edit Data --}}
-        {{-- @foreach ($hospital as $doctor)
-            <div class="modal fade" id="EditModal{{ $doctor->id }}">
+        @foreach ($news as $data)
+            <div class="modal fade" id="EditModal{{ $data->id }}">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -129,24 +129,24 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
-                        <form action="{{ url('index/table/hospital/' . $doctor->id) }}" method="post">
+                        <form action="{{ url('index/table/news/' . $data->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="modal-body">
                                 <div class="form-group mb-3">
-                                    <label for="name"> Nama </label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Masukkan Name" value="{{ $doctor->name }}">
+                                    <label for="title"> Title </label>
+                                    <input type="text" class="form-control" name="titile" id="title"
+                                        placeholder="Masukkan Name" value="{{ $data->titile }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="address"> Alamat </label>
-                                    <input type="text" class="form-control" name="address" id="address"
-                                        value="{{ $doctor->address }}">
+                                    <label for="description"> Deskripsi </label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                        value="{{ $data->description }}">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="image"> Gambar </label>
                                     <input type="file" class="form-control" name="image" id="image"
-                                        value="{{ $doctor->image }}">
+                                        value="{{ $data->image }}">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -158,6 +158,6 @@
                     </div>
                 </div>
             </div>
-        @endforeach --}}
+        @endforeach
         {{-- End Modal Edit Data --}}
     @endsection
