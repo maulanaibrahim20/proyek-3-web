@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Web\UserMobile;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = ['users' => User::all()];
+        $data = ['users' => UserMobile::all()];
         return view('pages.user', $data);
     }
 
@@ -30,7 +31,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
+        $user = new UserMobile();
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -63,7 +64,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        User::where("id", $id)->update([
+        UserMobile::where("id", $id)->update([
             "name" => $request->name,
             "email" => $request->email,
             "profession" => $request->profession,
@@ -76,7 +77,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::where("id", $id)->first();
+        $user = UserMobile::where("id", $id)->first();
 
         $user->delete();
 

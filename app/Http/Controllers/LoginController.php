@@ -10,29 +10,30 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function index () {
-        return view ('pages.login');
+    public function index()
+    {
+        return view('pages.login');
     }
 
-    public function login (LoginRequest $request) {
+    public function login(LoginRequest $request)
+    {
 
-        $user = User::where('email', $request-> email)->first();
+        $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return back()->with ('loginerror', 'akun tidak terdaftar/email salah');
+            return back()->with('loginerror', 'akun tidak terdaftar/email salah');
         }
-        if (!Hash::check($request->password,$user->password)) {
-            return back()->with ('loginerror', 'password salah');
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('loginerror', 'password salah');
         }
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect ('index');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('index');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect ('/');
+        return redirect('/');
     }
-
 }

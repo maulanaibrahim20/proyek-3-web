@@ -46,7 +46,7 @@ class HospitalController extends Controller
 
 
         $hospital->save();
-        return back();
+        return back()->withSuccess('Data Yang Anda Masukan Berhasil Disimpan Berhasil Di Simpan!');
     }
 
     /**

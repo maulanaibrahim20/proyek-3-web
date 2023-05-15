@@ -106,8 +106,10 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="image"> Gambar </label>
-                                <input type="file" class="form-control" name="image" id="image">
+                                <input type="file" class="form-control" name="image" id="gambar">
                             </div>
+                            <img id="preview" src="#" alt="your image" class="mt-3"
+                                style="display:none; width:200px;height:200px" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -161,3 +163,15 @@
         @endforeach
         {{-- End Modal Edit Data --}}
     @endsection
+    @push('script')
+        <script>
+            gambar.onchange = evt => {
+                preview = document.getElementById('preview');
+                preview.style.display = 'block';
+                const [file] = gambar.files
+                if (file) {
+                    preview.src = URL.createObjectURL(file)
+                }
+            }
+        </script>
+    @endpush
