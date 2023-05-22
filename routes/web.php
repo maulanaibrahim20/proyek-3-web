@@ -4,8 +4,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Web\DoctorController;
 use App\Http\Controllers\Web\HospitalController;
 use App\Http\Controllers\Web\NewsController;
+use App\Http\Controllers\Web\SpesialisController;
 use App\Http\Controllers\Web\UserController;
 use App\Models\Web\News;
+use App\Models\Web\Spesialis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +31,4 @@ Route::get("/logout", [LoginController::class, "logout"]);
 Route::resource('/index/table/doctor', DoctorController::class);
 Route::resource('/index/table/hospital', HospitalController::class);
 Route::resource('/index/table/news', NewsController::class);
+Route::resource('/index/table/spesialis', SpesialisController::class);

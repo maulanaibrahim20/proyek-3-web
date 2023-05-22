@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\DoctorController;
+use App\Http\Controllers\API\HospitalController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource("/user", UserController::class);
+Route::resource("/doctor", DoctorController::class);
+Route::resource("/hospital", HospitalController::class);
+Route::resource("/news", NewsController::class);
+
+Route::get("/counting", [HospitalController::class, "counting"]);

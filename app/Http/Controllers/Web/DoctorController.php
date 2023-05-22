@@ -31,13 +31,14 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $doctor = new Doctor();
-
+        dd($request->all());
         $doctor->name = $request->name;
         $doctor->poli = $request->poli;
         $doctor->lulusan = $request->lulusan;
         $doctor->jenis_kelamin = $request->jk;
         $doctor->no_str = $request->nostr;
         $doctor->id_hospital = $request->hospital;
+        $doctor->id = $request->spesialis;
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

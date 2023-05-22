@@ -175,6 +175,9 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ url('index/table/news') }}">News Table</a></li>
                 </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('index/table/spesialis') }}">spesialis Table</a></li>
+                </ul>
             </li>
             {{-- //pages --}}
             {{-- <li><a class="has-arrow ai-icon" href="/javascript:void()" aria-expanded="false">

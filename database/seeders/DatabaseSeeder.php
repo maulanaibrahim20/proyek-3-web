@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Web\Hospital;
+use App\Models\Web\Spesialis;
 use Database\Seeders\Akun\UserSeeder;
 use Database\Seeders\DoctorSeeder;
+use Database\Seeders\SpesialisSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DoctorSeeder::class);
         $this->call(HospitalSeeder::class);
         $this->call(NewsSeeder::class);
+        $this->call(SpesialisSeeder::class);
     }
 }

@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Web\Hospital;
+use App\Models\Web\Spesialis;
 use Illuminate\Http\Request;
 
-class HospitalController extends Controller
+class SpesialisController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = ['hospital' => Hospital::all()];
-        return view('pages.hospital', $data);
+        $data = ['spesialis' => Spesialis::all()];
+        return view('pages.spesialis', $data);
     }
 
     /**
@@ -30,23 +30,12 @@ class HospitalController extends Controller
      */
     public function store(Request $request)
     {
-        $hospital = new Hospital();
+        $data = new Spesialis();
 
-        $hospital->name = $request->name;
-        $hospital->address = $request->address;
+        $data->spesialis = $request->spesialis;
+        $data->save();
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $imageName = time() . '.' . $request->image->extension();
-
-        $request->image->move(public_path('images_hospital'), $imageName);
-        $hospital->image = $imageName;
-
-
-        $hospital->save();
-        return back()->withSuccess('Data Yang Anda Masukan Berhasil Disimpan');
+        return back();
     }
 
     /**
@@ -70,10 +59,8 @@ class HospitalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Hospital::where("id", $id)->update([
-            "name" => $request->name,
-            "address" => $request->address,
-            "image" => $request->image,
+        Spesialis::where("id", $id)->update([
+            "spesialis" => $request->spesialis,
         ]);
         return back();
     }
@@ -83,9 +70,9 @@ class HospitalController extends Controller
      */
     public function destroy(string $id)
     {
-        $hospital = Hospital::where("id", $id)->first();
+        $data = Spesialis::where("id", $id)->first();
 
-        $hospital->delete();
+        $data->delete();
 
         return back();
     }
