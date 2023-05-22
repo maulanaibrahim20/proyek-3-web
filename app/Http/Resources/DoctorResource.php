@@ -21,7 +21,7 @@ class DoctorResource extends JsonResource
             "spesialis" => $this->poli,
             "lulusan" => $this->lulusan,
             "no_str" => $this->no_str,
-            "gambar" => $this->image,
+            "image" => $this->image,
         ];
     }
 }

@@ -19,6 +19,14 @@ class NewsController extends Controller
         });
     }
 
+    public function allnews()
+    {
+        return DB::transaction(function () {
+            $data = News::all();
+            return NewsResource::collection($data);
+        });
+    }
+
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {

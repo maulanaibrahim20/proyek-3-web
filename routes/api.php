@@ -28,3 +28,5 @@ Route::resource("/hospital", HospitalController::class);
 Route::resource("/news", NewsController::class);
 
 Route::get("/counting", [HospitalController::class, "counting"]);
+Route::get("/alldoctor", [DoctorController::class, "alldoctor"]);
+Route::get("/allnews", [NewsController::class, "allnews"]);

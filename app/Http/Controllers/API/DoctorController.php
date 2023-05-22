@@ -18,6 +18,14 @@ class DoctorController extends Controller
         });
     }
 
+    public function alldoctor()
+    {
+        return DB::transaction(function () {
+            $data = Doctor::all();
+            return DoctorResource::collection($data);
+        });
+    }
+
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {
