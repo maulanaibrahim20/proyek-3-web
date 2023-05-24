@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\DoctorController;
 use App\Http\Controllers\API\HospitalController;
+use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post("/auth", [LoginController::class, "login"]);
 
 Route::resource("/user", UserController::class);
 Route::resource("/doctor", DoctorController::class);

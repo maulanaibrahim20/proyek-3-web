@@ -19,11 +19,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        UserMobile::create([
+        User::create([
             "name" => $request->name,
             "email" => $request->email,
             "profession" => $request->profession,
-            "password" => bcrypt("password123")
+            "password" => bcrypt($request->password)
         ]);
 
         return response()->json(["pesan" => "Akun Berhasil di Daftarkan"]);
