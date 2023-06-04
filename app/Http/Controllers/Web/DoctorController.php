@@ -31,7 +31,7 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $doctor = new Doctor();
-        dd($request->all());
+        ($request->all());
         $doctor->name = $request->name;
         $doctor->poli = $request->poli;
         $doctor->lulusan = $request->lulusan;
