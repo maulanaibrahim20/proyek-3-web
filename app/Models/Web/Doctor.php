@@ -22,6 +22,6 @@ class Doctor extends Model
 
     public function getSpesialis()
     {
-        return $this->belongsTo("App\Models\Web\Spesialis", "id", "id");
+        return $this->belongsTo("App\Models\Web\Spesialis", "id_spesialis", "id");
     }
 }

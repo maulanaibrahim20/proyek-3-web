@@ -64,10 +64,11 @@
                                                     <a class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#EditModal{{ $data->id }}">Edit</a>
                                                     <form action="{{ url('index/table/news/' . $data->id) }}" method="POST"
-                                                        onsubmit="return confirm('apakah anda Ingin Menghapus Data ini?')">
+                                                        id="deleteForm">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button class="dropdown-item">Delete</button>
+                                                        <button class="dropdown-item"
+                                                            onclick="confirmDelete(event)">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -128,27 +129,33 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Update Data</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal">
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form action="{{ url('index/table/news/' . $data->id) }}" method="post">
+                        <form action="{{ url('index/table/news/' . $data->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="modal-body">
                                 <div class="form-group mb-3">
-                                    <label for="title"> Title </label>
-                                    <input type="text" class="form-control" name="titile" id="title"
-                                        placeholder="Masukkan Name" value="{{ $data->titile }}">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" name="title" id="title"
+                                        placeholder="Masukkan Name" value="{{ $data->title }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="description"> Deskripsi </label>
+                                    <label for="description">Deskripsi</label>
                                     <input type="text" class="form-control" name="description" id="description"
                                         value="{{ $data->description }}">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="image"> Gambar </label>
-                                    <input type="file" class="form-control" name="image" id="image"
-                                        value="{{ $data->image }}">
+                                    <label for="image">Gambar</label>
+                                    @if ($data->image)
+                                        <p>Nama File: {{ $data->image }}</p>
+                                        <img src="{{ asset('images_news/' . $data->image) }}" alt="Current Image"
+                                            style="max-height: 200px;">
+                                    @else
+                                        <p>No image available</p>
+                                    @endif
+                                    <input type="file" class="form-control" name="image" id="image">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -175,3 +182,23 @@
             }
         </script>
     @endpush
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+
+            swal({
+                    title: "Apakah Anda yakin?",
+                    text: "Data ini akan dihapus!",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        document.getElementById("deleteForm").submit();
+                    }
+                });
+        }
+    </script>

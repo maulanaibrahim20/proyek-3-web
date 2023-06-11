@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Web\Doctor;
 use App\Models\Web\Hospital;
+use App\Models\Web\Spesialis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class DoctorController extends Controller
 {
@@ -14,7 +16,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $data = ['doctor' => Doctor::all(), 'hospital' => Hospital::all()];
+        $data = ['doctor' => Doctor::all(), 'hospital' => Hospital::all(), 'spesialis' => Spesialis::all(),];
         return view('pages.doctor', $data);
     }
 
@@ -33,12 +35,14 @@ class DoctorController extends Controller
         $doctor = new Doctor();
         ($request->all());
         $doctor->name = $request->name;
-        $doctor->poli = $request->poli;
+        // $doctor->poli = $request->poli;
         $doctor->lulusan = $request->lulusan;
         $doctor->jenis_kelamin = $request->jk;
         $doctor->no_str = $request->nostr;
         $doctor->id_hospital = $request->hospital;
-        $doctor->id = $request->spesialis;
+        $doctor->id_spesialis = $request->spesialis;
+        // $doctor->id = $request->spesialis;
+
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -47,9 +51,9 @@ class DoctorController extends Controller
 
         $request->image->move(public_path('images_doctor'), $imageName);
         $doctor->image = $imageName;
-        $doctor->save();
 
-        return back();
+        $doctor->save();
+        return back()->withSuccess('Data Berhasil Ditambahkan');
     }
 
     /**
@@ -75,13 +79,40 @@ class DoctorController extends Controller
     {
         Doctor::where("id", $id)->update([
             "name" => $request->name,
-            "poli" => $request->poli,
+            // "poli" => $request->poli,
             "lulusan" => $request->lulusan,
             "no_str" => $request->nostr,
             "jenis_kelamin" => $request->jk,
+            "id_spesialis" => $request->spesialis,
         ]);
-        return back();
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $doctor = Doctor::find($id);
+
+            // Hapus foto lama jika ada
+            $oldImageName = $doctor->image;
+            if ($oldImageName) {
+                $fotoPath = public_path('images_doctor/' . $oldImageName);
+                if (File::exists($fotoPath)) {
+                    File::delete($fotoPath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images_doctor'), $imageName);
+
+            Doctor::where("id", $id)->update([
+                "image" => $imageName,
+            ]);
+        }
+
+        return back()->withSuccess('Data Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -92,6 +123,6 @@ class DoctorController extends Controller
 
         $doctor->delete();
 
-        return back();
+        return back()->withSuccess('Data Berhasil Di Hapus');
     }
 }

@@ -12,8 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = UserMobile::all();
-
+        $data = User::all();
         return UserResource::collection($data);
     }
 

@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = ['users' => UserMobile::all()];
+        $data = ['users' => User::all()];
         return view('pages.user', $data);
     }
 

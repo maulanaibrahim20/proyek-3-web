@@ -61,7 +61,7 @@
                                             <input type="password" class="form-control" value="" name="password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                                         </div>
                                     </form>
                                 </div>
@@ -78,7 +78,7 @@
         Scripts
         ***********************************-->
     <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
+    {{-- <script src="vendor/global/global.min.js"></script> --}}
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/styleSwitcher.js"></script>

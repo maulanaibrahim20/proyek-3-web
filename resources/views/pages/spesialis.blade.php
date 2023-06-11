@@ -59,11 +59,11 @@
                                                     <a class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#EditModal{{ $data->id }}">Edit</a>
                                                     <form action="{{ url('index/table/spesialis/' . $data->id) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('apakah anda Ingin Menghapus Data ini?')">
+                                                        method="POST" id="deleteForm">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button class="dropdown-item">Delete</button>
+                                                        <button class="dropdown-item"
+                                                            onclick="confirmDelete(event)">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -138,3 +138,23 @@
         @endforeach
         {{-- End Modal Edit Data --}}
     @endsection
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+
+            swal({
+                    title: "Apakah Anda yakin?",
+                    text: "Data ini akan dihapus!",
+                    icon: "warning",
+                    buttons: ["Batal", "Hapus"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        document.getElementById("deleteForm").submit();
+                    }
+                });
+        }
+    </script>

@@ -1,5 +1,8 @@
 @extends('index')
 @section('content')
+    <?php
+    use Carbon\Carbon;
+    ?>
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
@@ -36,7 +39,8 @@
                                         <td><strong>{{ $loop->iteration }}</strong></td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ date('d-F-Y', strtotime($user->reated_at)) }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($user->created_at)->locale('id')->isoFormat('dddd, D MMMM Y') }}
+                                        </td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-warning light sharp"

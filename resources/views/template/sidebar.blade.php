@@ -3,7 +3,7 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="/javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="images/Logo1.png" width="8" alt="">
+                    <img src="{{ url('images/Logo1.png') }}" width="8" alt="">
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi,{{ auth()->user()->name }}</span>
                         <small class="text-end font-w400">{{ auth()->user()->email }}</small>
@@ -176,7 +176,7 @@
                     <li><a href="{{ url('index/table/news') }}">News Table</a></li>
                 </ul>
                 <ul aria-expanded="false">
-                    <li><a href="{{ url('index/table/spesialis') }}">spesialis Table</a></li>
+                    <li><a href="{{ url('index/table/spesialis') }}">Spesialis Table</a></li>
                 </ul>
             </li>
             {{-- //pages --}}

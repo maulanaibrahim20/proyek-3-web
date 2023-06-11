@@ -29,7 +29,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    {{-- <div id="preloader">
+    <div id="preloader">
         <div class="waviy">
             <span style="--i:1">K</span>
             <span style="--i:2">E</span>
@@ -42,7 +42,7 @@
             <span style="--i:9">.</span>
             <span style="--i:10">6</span>
         </div>
-    </div> --}}
+    </div>
     <!--*******************
         Preloader end
     ********************-->

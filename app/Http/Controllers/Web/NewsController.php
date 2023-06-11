@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Web\News;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
@@ -45,7 +47,12 @@ class NewsController extends Controller
         $news->image = $imageName;
 
 
-        $news->save();
+        // $news->save();
+        if ($news->save()) {
+            Alert::success('Success', 'Data has been successfully added.')->autoclose(3000);
+        } else {
+            Alert::error('Error', 'Failed to add data.')->autoclose(3000);
+        }
         return back();
     }
 
@@ -70,13 +77,46 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        News::where("id", $id)->update([
-            "title" => $request->title,
-            "description" => $request->description,
-            "image" => $request->image,
-        ]);
+        $news = News::find($id);
+
+        if (!$news) {
+            Alert::error('Error', 'Data not found.')->autoclose(3000);
+            return back();
+        }
+
+        $news->title = $request->title;
+        $news->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Hapus foto lama jika ada
+            $oldImageName = $news->image;
+            if ($oldImageName) {
+                $fotoPath = public_path('images_news/' . $oldImageName);
+                if (File::exists($fotoPath)) {
+                    File::delete($fotoPath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images_news'), $imageName);
+            $news->image = $imageName;
+        }
+
+        if ($news->save()) {
+            Alert::success('Success', 'Data has been successfully updated.')->autoclose(3000);
+        } else {
+            Alert::error('Error', 'Failed to update data.')->autoclose(3000);
+        }
+
         return back();
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -85,7 +125,20 @@ class NewsController extends Controller
     {
         $news = News::where("id", $id)->first();
 
+        // Simpan nama file foto sebelum dihapus
+        $imageName = $news->image;
+
+        $fotoPath = public_path('images_news/' . $imageName);
+
         $news->delete();
+
+        // Hapus foto jika data berhasil dihapus
+        if (file_exists($fotoPath)) {
+            unlink($fotoPath);
+        }
+
+        // Tampilkan SweetAlert setelah data berhasil dihapus
+        Alert::success('Sukses', 'Data yang Anda masukkan berhasil diperbaharui')->autoclose(3000);
 
         return back();
     }
