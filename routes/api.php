@@ -4,6 +4,8 @@ use App\Http\Controllers\API\DoctorController;
 use App\Http\Controllers\API\HospitalController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\SpesialisController;
+use App\Http\Controllers\API\MessageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,25 @@ Route::resource("/user", UserController::class);
 Route::resource("/doctor", DoctorController::class);
 Route::resource("/hospital", HospitalController::class);
 Route::resource("/news", NewsController::class);
+Route::resource("/spesialis", SpesialisController::class);
+
+//start Routing Message
+Route::get('/messages', [MessageController::class, 'index']);
+
+// Mengambil detail pesan
+Route::get('/messages/{id}', [MessageController::class, 'show']);
+
+// Menyimpan pesan baru
+Route::post('/messages', [MessageController::class, 'store']);
+
+// Mengupdate pesan
+Route::put('/messages/{id}', [MessageController::class, 'update']);
+
+// Menghapus pesan
+Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
+// Route::resource("/message", MessageController::class);
+
+//end Routing Messages
 
 Route::get("/counting", [HospitalController::class, "counting"]);
 Route::get("/alldoctor", [DoctorController::class, "alldoctor"]);

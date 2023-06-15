@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return DB::transaction(function () {
-            $data = Doctor::paginate(3);
+        return DB::transaction(function () use ($request) {
+            $query = Doctor::query();
+
+            if ($request->has('id_spesialis')) {
+                $query->where('id_spesialis', $request->id_spesialis);
+            }
+
+            $data = $query->paginate($request->per_page);
             return DoctorResource::collection($data);
         });
     }
@@ -36,6 +42,7 @@ class DoctorController extends Controller
 
             Doctor::create([
                 "id_hospital" => $request->id_hospital, //key value "id_hospital adalah nama yang ada di database"
+                "id_spesialis" => $request->id_spesialis, //key value "id_hospital adalah nama yang ada di database"
                 "name" => $request->name,
                 "poli" => $request->poli,
                 "lulusan" => $request->lulusan,

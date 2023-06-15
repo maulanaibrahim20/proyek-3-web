@@ -5,7 +5,6 @@
             <div class="alert" style="background-color: #0AA8B0; color: white;">
                 <p style="font-size: 20px; margin-bottom: 0;">Selamat Datang <b>"{{ auth()->user()->name }}"</b></p>
             </div>
-
         </div>
     </div>
     {{-- Start Card --}}

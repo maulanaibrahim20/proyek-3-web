@@ -123,6 +123,6 @@ class DoctorController extends Controller
 
         $doctor->delete();
 
-        return back()->withSuccess('Data Berhasil Di Hapus');
+        return back()->withSuccess('Data Berhasil di Hapus');
     }
 }

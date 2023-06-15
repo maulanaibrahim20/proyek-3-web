@@ -1,5 +1,8 @@
 @extends('index')
 @section('content')
+    <?php
+    use Carbon\Carbon;
+    ?>
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
@@ -26,6 +29,7 @@
                                     <th><strong>Judul</strong></th>
                                     <th><strong>Deskripsi</strong></th>
                                     <th><strong>Gambar</strong></th>
+                                    <th><strong>Dibuat</strong></th>
                                     <th><strong>Aksi</strong></th>
                                 </tr>
                             </thead>
@@ -37,6 +41,8 @@
                                         <td>{{ $data->description }}</td>
                                         <td><img src="{{ asset('/images_news/' . $data->image) }}"
                                                 style="width:100px;height:70">
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('id')->isoFormat('dddd, D MMMM Y') }}
                                         </td>
                                         <td>
                                             <div class="dropdown">

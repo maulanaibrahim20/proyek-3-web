@@ -17,12 +17,13 @@ class DoctorResource extends JsonResource
         return [
             "id" => $this->id,
             "id_hospital" => $this->getHospital->name,
-            "id_hospital" => $this->getSpesialis->spesialis,
+            "id_spesialis" => $this->getSpesialis->spesialis,
             "name" => $this->name,
             // "spesialis" => $this->poli,
             "lulusan" => $this->lulusan,
             "no_str" => $this->no_str,
             "image" => $this->image,
+            "jenis_kelamin" => $this->jenis_kelamin,
         ];
     }
 }

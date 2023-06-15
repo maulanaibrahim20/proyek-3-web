@@ -10,4 +10,9 @@ class Spesialis extends Model
     use HasFactory;
     protected $table = "spesialis";
     protected $guarded = [''];
+
+    public function getDoctor()
+    {
+        return $this->hasMany(Doctor::class, "id_spesialis", "id");
+    }
 }

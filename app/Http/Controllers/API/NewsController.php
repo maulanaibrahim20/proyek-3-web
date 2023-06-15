@@ -38,6 +38,7 @@ class NewsController extends Controller
             News::create([
                 "title" => $request->title,
                 "description" => $request->description,
+                "created_at" => $request->created_at,
                 "image" => url("storage/" . $data)
             ]);
             return response()->json(["pesan" => "Data News/Berita Berhasil Ditambahkan"]);

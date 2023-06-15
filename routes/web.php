@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ErrorHandling;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ErrorHandlingController;
 use App\Http\Controllers\Web\AppController;
+use App\Http\Controllers\Web\ChatController;
 use App\Http\Controllers\Web\DoctorController;
 use App\Http\Controllers\Web\HospitalController;
 use App\Http\Controllers\Web\NewsController;
@@ -22,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/index', [AppController::class, 'index'])->middleware('auth');
 Route::get('/', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/', [LoginController::class, 'login']);
@@ -31,3 +35,4 @@ Route::resource('/index/table/doctor', DoctorController::class);
 Route::resource('/index/table/hospital', HospitalController::class);
 Route::resource('/index/table/news', NewsController::class);
 Route::resource('/index/table/spesialis', SpesialisController::class);
+Route::resource('/index/table/chat', ChatController::class);
